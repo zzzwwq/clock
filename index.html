@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>时钟</title>
+</head>
+<style>
+    .wrap{
+        width: 250px;
+        height: 250px;
+        border: 10px solid #000;
+        border-radius: 50%;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+    }
+    .kedu{
+        width: 250px;
+        height: 250px;
+        position: relative;
+    }
+    .number{
+        width: 20px;
+        height: 125px;
+        position: absolute;
+        transform-origin: bottom center;
+    }
+    span{
+        display: block;
+        text-align: center;
+    }
+    .hour{
+        width: 7px;
+        height: 50px;
+        background: #000;
+        position: absolute;
+        left: 0;
+        right: 0;
+        margin-left: auto;
+        margin-right: auto;
+        top: 75px;
+        transform-origin: bottom center;
+    }
+    .min{
+        width: 5px;
+        height: 70px;
+        background: #000;
+        position: absolute;
+        left: 0;
+        right: 0;
+        margin-left: auto;
+        margin-right: auto;
+        top: 55px;
+        transform-origin: bottom center;
+    }
+    .second{
+        width: 3px;
+        height: 90px;
+        background: #000;
+        position: absolute;
+        left: 0;
+        right: 0;
+        margin-left: auto;
+        margin-right: auto;
+        top: 35px;
+        transform-origin: bottom center;
+    }
+    .circle{
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: black;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+    }
+</style>
+<body>
+<div class="wrap">
+    <div class="kedu">
+        <div class="number"><span>12</span></div>
+        <div class="number"><span>1</span></div>
+        <div class="number"><span>2</span></div>
+        <div class="number"><span>3</span></div>
+        <div class="number"><span>4</span></div>
+        <div class="number"><span>5</span></div>
+        <div class="number"><span>6</span></div>
+        <div class="number"><span>7</span></div>
+        <div class="number"><span>8</span></div>
+        <div class="number"><span>9</span></div>
+        <div class="number"><span>10</span></div>
+        <div class="number"><span>11</span></div>
+    </div>
+    <div class="circle"></div>
+    <div class="hour"></div>
+    <div class="min"></div>
+    <div class="second"></div>
+</div>
+</body>
+</html>
+<script>
+    let kedu = document.querySelector(".kedu");
+    let kedus = kedu.querySelectorAll(".number");
+    let spans = document.querySelectorAll("span");
+
+    for (var i = 0; i < kedus.length; i++) {
+        kedus[i].style.transform ="translateX(115px) rotateZ("+ i*30 +"deg)";
+        spans[i].style.transform = "rotateZ("+ (-i*30) +"deg)";
+    }
+
+    let h=document.querySelector(".hour");
+    let m=document.querySelector(".min");
+    let s=document.querySelector(".second");
+    function time(){
+        let now=new Date();
+        let htime=now.getHours();
+        let mtime=now.getMinutes();
+        let stime=now.getSeconds();
+        h.style.transform=`rotate(${30*htime+0.5*mtime}deg)`;
+        m.style.transform=`rotate(${6*mtime}deg)`;
+        s.style.transform=`rotate(${6*stime}deg)`;
+    }
+    time();
+    setInterval(time,1000);
+
+</script>
