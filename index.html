@@ -5,6 +5,18 @@
     <title>时钟</title>
 </head>
 <style>
+    .clock{
+        width: 250px;
+        height:70px;
+        border: 1px solid #000;
+        margin: 100px auto ;
+        font-size: 30px;
+        line-height: 70px;
+        text-align: center;
+    }
+    .clock span{
+        color: #DF7492;
+    }
     .wrap{
         width: 250px;
         height: 250px;
@@ -28,44 +40,44 @@
         position: absolute;
         transform-origin: bottom center;
     }
-    span{
+    .number span{
         display: block;
         text-align: center;
     }
     .hour{
         width: 7px;
-        height: 50px;
+        height: 60px;
         background: #000;
         position: absolute;
         left: 0;
         right: 0;
         margin-left: auto;
         margin-right: auto;
-        top: 75px;
+        top: 65px;
         transform-origin: bottom center;
     }
     .min{
         width: 5px;
-        height: 70px;
+        height: 80px;
         background: #000;
         position: absolute;
         left: 0;
         right: 0;
         margin-left: auto;
         margin-right: auto;
-        top: 55px;
+        top: 45px;
         transform-origin: bottom center;
     }
     .second{
         width: 3px;
-        height: 90px;
+        height: 100px;
         background: #000;
         position: absolute;
         left: 0;
         right: 0;
         margin-left: auto;
         margin-right: auto;
-        top: 35px;
+        top: 25px;
         transform-origin: bottom center;
     }
     .circle{
@@ -82,32 +94,37 @@
     }
 </style>
 <body>
-<div class="wrap">
-    <div class="kedu">
-        <div class="number"><span>12</span></div>
-        <div class="number"><span>1</span></div>
-        <div class="number"><span>2</span></div>
-        <div class="number"><span>3</span></div>
-        <div class="number"><span>4</span></div>
-        <div class="number"><span>5</span></div>
-        <div class="number"><span>6</span></div>
-        <div class="number"><span>7</span></div>
-        <div class="number"><span>8</span></div>
-        <div class="number"><span>9</span></div>
-        <div class="number"><span>10</span></div>
-        <div class="number"><span>11</span></div>
+    <div class="clock">
+        <span id="h"></span> 时
+        <span id="m"></span> 分
+        <span id="s"></span> 秒
     </div>
-    <div class="circle"></div>
-    <div class="hour"></div>
-    <div class="min"></div>
-    <div class="second"></div>
-</div>
+    <div class="wrap">
+        <div class="kedu">
+            <div class="number"><span>12</span></div>
+            <div class="number"><span>1</span></div>
+            <div class="number"><span>2</span></div>
+            <div class="number"><span>3</span></div>
+            <div class="number"><span>4</span></div>
+            <div class="number"><span>5</span></div>
+            <div class="number"><span>6</span></div>
+            <div class="number"><span>7</span></div>
+            <div class="number"><span>8</span></div>
+            <div class="number"><span>9</span></div>
+            <div class="number"><span>10</span></div>
+            <div class="number"><span>11</span></div>
+        </div>
+        <div class="circle"></div>
+        <div class="hour"></div>
+        <div class="min"></div>
+        <div class="second"></div>
+    </div>
 </body>
 </html>
 <script>
     let kedu = document.querySelector(".kedu");
     let kedus = kedu.querySelectorAll(".number");
-    let spans = document.querySelectorAll("span");
+    let spans = document.querySelectorAll(".number span");
 
     for (var i = 0; i < kedus.length; i++) {
         kedus[i].style.transform ="translateX(115px) rotateZ("+ i*30 +"deg)";
@@ -117,6 +134,9 @@
     let h=document.querySelector(".hour");
     let m=document.querySelector(".min");
     let s=document.querySelector(".second");
+    let h1=document.querySelector("#h");
+    let m1=document.querySelector("#m");
+    let s1=document.querySelector("#s");
     function time(){
         let now=new Date();
         let htime=now.getHours();
@@ -125,6 +145,9 @@
         h.style.transform=`rotate(${30*htime+0.5*mtime}deg)`;
         m.style.transform=`rotate(${6*mtime}deg)`;
         s.style.transform=`rotate(${6*stime}deg)`;
+            h1.innerText=htime;
+            m1.innerText=mtime;
+            s1.innerText=stime;
     }
     time();
     setInterval(time,1000);
